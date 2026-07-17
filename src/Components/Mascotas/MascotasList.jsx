@@ -1,43 +1,44 @@
 import { useEffect, useState } from "react";
 import mascotasApi from "../../MascotasApi/MascotasApi";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom"
 
+function MascotasList() {
+    const  [mascotasList, setMascotasList] = useState([]);
 
-function MascotasList(){
-    const [mascotasList, setMascotasList]= useState([]);
-
-//aquí obtenemos la lista de mascotas desde la api y actualiza el estado
     const fetchMascotas = async () => {
         try{
-            const response = await mascotasApi.get('mascotas/')
-            console.log(response.data.results)
-            setMascotasList(response.data.results);
+        const response = await mascotasApi.get('mascotas/')
+        console.log(response.data);
+        setMascotasList(response.data);
         } catch (error){
             console.log(error);
-        }
-    };    
-
+        };
+        
+    }
 
     useEffect(() => {
         fetchMascotas();
 
     }, [])
+
+    
+
     return(
-
         <>
-        <h2>Registrar mascota</h2>
+        <h2>Lista mascotas</h2>
 
-        <Link to={"formulario/"}>Registrar mascota</Link>
+        <Link to={"formulario/"}>Registrar Mascota</Link>
         {
-            mascotasList.map(m=>(
+            mascotasList.map(m =>(
                 <div key={m.id}>
                 <h3>{m.nombre}</h3>
-                <img src={m.imagen} alt="foto del paciente" />
+                <img src={m.imagen}></img>
                 </div>
             ))
         }
         
         </>
     )
+    
 }
-export default MascotasList
+export default MascotasList;
