@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom"
+import MascotasForm from "./MascotasForm";
 
-function MascotasList({lista}) {
+function MascotasList({lista, onAdd}) {
     
     
 
@@ -8,7 +9,7 @@ function MascotasList({lista}) {
         <>
         <h2>Lista mascotas</h2>
 
-        <Link to={"formulario/"}>Registrar Mascota</Link>
+        <MascotasForm onAdd={onAdd}/>
         {
             lista.map(m =>(
                 <div key={m.id}>

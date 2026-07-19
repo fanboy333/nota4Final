@@ -15,7 +15,7 @@ function App() {
 
         <Routes>
           <Route path="mascotas/" element={<MascotasPage />} />
-          <Route path="mascotas/formulario" element={<MascotasForm/>}/>
+          
         </Routes>
       </Router>
     </>

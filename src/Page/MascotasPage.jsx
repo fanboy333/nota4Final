@@ -16,6 +16,16 @@ const  [mascotasList, setMascotasList] = useState([]);
         }
         
     }
+    const addMascotas =  async (mascota) => {
+        try{
+        const response = await mascotasApi.post('mascotas/', mascota);
+        console.log(response.data);
+        }catch(error){
+            console.log(error)
+        }finally{
+        fetchMascotas();   
+        }
+    }
 
     useEffect(() => {
         fetchMascotas();
@@ -31,7 +41,7 @@ const  [mascotasList, setMascotasList] = useState([]);
 
         
 
-        <MascotasList lista={mascotasList}/>
+        <MascotasList lista={mascotasList} onAdd={addMascotas}/>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import mascotasApi from "../../MascotasApi/MascotasApi"
 
-function MascotasForm(){
+function MascotasForm({onAdd}){
     const [estados, setEstados] = useState([]);
     const [tipoAnimal, setAnimal] = useState([]);
     const [tiposexo, setTipoSexo] = useState([]);
@@ -51,10 +51,11 @@ function MascotasForm(){
         formData.append("tamano", selectedTamano);
         formData.append("imagen", imagen);
         console.log(formData);
+        onAdd(formData);
     };
     return(
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
 
             <label>Nombre:<input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} /></label>
 
@@ -100,7 +101,7 @@ function MascotasForm(){
                 </select>
             </label>
             <label>imagen 
-                <input type="file"  onChange={(e) => setImagen(e.target.value)} />
+                <input type="file" onChange={(e) => setImagen(e.target.files[0])} />
             </label>
 
             <button type="submit">Guardar</button>
