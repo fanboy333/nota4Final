@@ -6,6 +6,7 @@ function MascotasForm({onAdd}){
     const [tipoAnimal, setAnimal] = useState([]);
     const [tiposexo, setTipoSexo] = useState([]);
     const [tamano, setTamano]= useState([]);
+    const [error, setError] = useState("");
 
 
     const [nombre, setNombre] = useState("");
@@ -39,6 +40,13 @@ function MascotasForm({onAdd}){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(
+            !nombre.trim("") || !edad || !descripcion.trim("") || !raza.trim("") ||
+            !selectedEstados ||  !selectedTipoMascota ||  !selectedSexo ||!selectedTamano || !imagen
+          ) {
+            alert("Ningun campo debe estar vacio");
+            return;
+          }
         console.log(nombre, edad, descripcion, raza, selectedEstados, selectedTipoMascota, selectedSexo, selectedTamano, imagen);
         const formData = new FormData();
         formData.append("nombre", nombre);

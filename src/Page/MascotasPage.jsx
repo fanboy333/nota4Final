@@ -20,8 +20,10 @@ const  [mascotasList, setMascotasList] = useState([]);
         try{
         const response = await mascotasApi.post('mascotas/', mascota);
         console.log(response.data);
+        alert("Mascota agregada con exito")
         }catch(error){
             console.log(error)
+            alert("hubo un error al agregar la mascoata")
         }finally{
         fetchMascotas();   
         }

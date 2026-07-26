@@ -62,7 +62,6 @@ function MascotasDetalle() {
                 </table>
             </article>
 
-            {/* Sección de comentarios */}
             <ComMascotas mascotaId={id} />
         </>
     );
