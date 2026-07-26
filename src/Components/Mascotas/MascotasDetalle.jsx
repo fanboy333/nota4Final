@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import mascotasApi from "../../MascotasApi/MascotasApi";
+import ComMascotas from "../Comentarios/ComMascotas";
 
 function MascotasDetalle() {
     const { id } = useParams();
@@ -48,7 +49,7 @@ function MascotasDetalle() {
                     <tbody>
                         <tr>
                             <td>{detalles.nombre}</td>
-                            <img src={detalles.imagen}/>
+                            <img src={detalles.imagen} style={{width: "100px"}}/>
                             <td>{detalles.descripcion}</td>
                             <td>{detalles.estado}</td>
                             <td>{detalles.tipo_animal}</td>
@@ -60,6 +61,9 @@ function MascotasDetalle() {
                     </tbody>
                 </table>
             </article>
+
+            {/* Sección de comentarios */}
+            <ComMascotas mascotaId={id} />
         </>
     );
 }
