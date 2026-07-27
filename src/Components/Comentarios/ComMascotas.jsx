@@ -13,7 +13,17 @@ function ComMascotas({ mascotaId }) {
             const filtrados = todosLosComentarios.filter(c => c.mascota === parseInt(mascotaId));
             setComentarios(filtrados);
         } catch (error) {
-            console.log("error al traer comentarios:", error);
+            console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400 los datos estan mal o incompletos");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404 no encontrado");
+                }
+            } else {
+                alert("Error: no hay conexion");
+            }
         }
     };
     useEffect(() => {

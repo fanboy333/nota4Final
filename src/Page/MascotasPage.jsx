@@ -13,6 +13,16 @@ const  [mascotasList, setMascotasList] = useState([]);
         setMascotasList(response.data);
         } catch (error){
             console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400 los datos estan mal o incompletos");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404 no encontrado");
+                }
+            } else {
+                alert("Error: no hay conexion");
+            }
         }
         
     }
@@ -22,7 +32,17 @@ const  [mascotasList, setMascotasList] = useState([]);
         console.log(response.data);
         alert("Mascota agregada con exito")
         }catch(error){
-            console.log(error)
+            console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400 los datos estan mal o incompletos");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404 no encontrado");
+                }
+            } else {
+                alert("Error: no hay conexion");
+            }
         }finally{
         fetchMascotas();   
         }
@@ -39,9 +59,6 @@ const  [mascotasList, setMascotasList] = useState([]);
     return(
         <>
         <h1>Pagina de Mascotas</h1>
-
-        
-
         <MascotasList lista={mascotasList} onAdd={addMascotas}/>
         </>
     )

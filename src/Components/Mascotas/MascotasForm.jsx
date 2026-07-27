@@ -30,7 +30,17 @@ function MascotasForm({onAdd}){
         setTipoSexo(response.data.sexo);
         setTamano(response.data.tamano);
         }catch(error){
-            console.log(error)
+            console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400 los datos estan mal o incompletos");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404 no encontrado");
+                }
+            } else {
+                alert("Error No hay conexion");
+            }
         }
     }
     useEffect(()=>{

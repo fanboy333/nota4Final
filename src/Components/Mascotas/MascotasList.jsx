@@ -17,10 +17,9 @@ function MascotasList({lista, onAdd}) {
                 <h3>{m.descripcion}</h3>
                 <h3>{m.tipo_animal}</h3>
                 <h3>{m.estado}</h3>
-                <tr>
+                <div>
                     <Link to={`/mascotas/detalles/${m.id}`}>Ver Detalles </Link>
-                                
-                </tr>
+                </div>
                 
 
                 </div>

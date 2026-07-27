@@ -16,7 +16,12 @@ function EditarMascota({ mascota, onUpdate, onCancelar }) {
         } catch (error) {
             console.log(error);
             if (error.response) {
-                alert(`Error ${error.response.status}`);
+                if (error.response.status === 400) {
+                    alert("Error 400 los datos estan mal o incompletos");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404 no encontrado");
+                }
             } else {
                 alert("Ocurrio un error");
             }

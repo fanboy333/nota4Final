@@ -17,6 +17,16 @@ function MascotasDetalle() {
             }
         } catch (error) {
             console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404");
+                }
+            } else {
+                alert("Error: no hay conexion");
+            }
         }
     };
 
@@ -35,6 +45,16 @@ function MascotasDetalle() {
             traerDetalles();
         } catch (error) {
             console.log(error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Error 400");
+                }
+                if (error.response.status === 404) {
+                    alert("Error 404");
+                }
+            } else {
+                alert("Error no hay conexion");
+            }
         }
     };
 
