@@ -1,10 +1,10 @@
-# Mascotas Frontend 🐾
+# Mascotas Frontend 
 
 Este es el proyecto frontend para la gestión de mascotas, desarrollado en **React** con **Vite**. Permite registrar nuevas mascotas, listar las existentes, ver detalles de forma individual, editar información (descripción, estado, imagen) y visualizar comentarios asociados.
 
 ---
 
-## 🛠️ Requisitos Previos
+##  Requisitos Previos
 
 Antes de comenzar, asegúrate de tener instalado:
 * **Node.js** (versión 18 o superior recomendada).
@@ -12,7 +12,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🚀 Instalación y Configuración
+##  Instalación y Configuración
 
 Sigue estos pasos para configurar el proyecto en tu entorno local:
 
@@ -30,7 +30,7 @@ Sigue estos pasos para configurar el proyecto en tu entorno local:
 
 ---
 
-## 💻 Ejecución del Proyecto
+##  Ejecución del Proyecto
 
 Para iniciar el servidor de desarrollo local:
 
@@ -41,11 +41,11 @@ Para iniciar el servidor de desarrollo local:
 
 2. **Acceder a la aplicación:**
    Una vez iniciado, abre tu navegador web y entra a:
-   [http://localhost:5173](http://localhost:5173)
+   http://localhost:5173
 
 ---
 
-## 🤖 Uso de Herramientas de Inteligencia Artificial (IA)
+##  Uso de Herramientas de Inteligencia Artificial (IA)
 
 **Herramienta utilizada:** Gemini 
 
@@ -59,9 +59,14 @@ Para iniciar el servidor de desarrollo local:
 1. Colaboró en la estructuración de la petición `PATCH` para actualizar parcialmente los datos de una mascota (descripción, estado e imagen).
 2. Ayudó a organizar el flujo de `props` (`mascota`, `onUpdate` y `onCancelar`) para comunicar el componente con `MascotasDetalle.jsx` y gestionar el modo de edición.
 
+### Corrección de advertencias (Linter / ESLint)
+
+1. Nos ayudó a borrar los imports y variables que estaban declarados en el código pero que nunca se usaban en `App.jsx` y `MascotasForm.jsx`.
+2. Nos ayudó a mover las funciones de traer datos adentro de los `useEffect` en varios archivos para solucionar las advertencias de dependencias vacías y problemas de recarga de pantalla en React.
+
 ---
 
-## 🎨 Diseño de Interfaz (Bootstrap Básico)
+##  Diseño de Interfaz (Bootstrap Básico)
 
 La interfaz de usuario se mejoró utilizando clases nativas y estándar de Bootstrap para asegurar un diseño limpio y ordenado sin necesidad de añadir reglas CSS personalizadas o avanzadas:
 
