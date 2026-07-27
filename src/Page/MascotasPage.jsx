@@ -1,18 +1,17 @@
 import MascotasList from "../Components/Mascotas/MascotasList";
 import mascotasApi from "../MascotasApi/MascotasApi";
 import { useEffect, useState } from "react";
+
 function MascotasPage(){
-
-
-const  [mascotasList, setMascotasList] = useState([]);
-const [ cargando, setCargando] = useState(true);
+    const [mascotasList, setMascotasList] = useState([]);
+    const [cargando, setCargando] = useState(true);
 
     const fetchMascotas = async () => {
         setCargando(true);
         try{
-        const response = await mascotasApi.get('mascotas/')
-        console.log(response.data);
-        setMascotasList(response.data);
+            const response = await mascotasApi.get('mascotas/');
+            console.log(response.data);
+            setMascotasList(response.data);
         } catch (error){
             console.log(error);
             if (error.response) {
@@ -25,17 +24,17 @@ const [ cargando, setCargando] = useState(true);
             } else {
                 alert("Error: no hay conexion");
             } 
-            } finally {
-                setCargando(false);
+        } finally {
+            setCargando(false);
         }
-        
-    }
-    const addMascotas =  async (mascota) => {
+    };
+
+    const addMascotas = async (mascota) => {
         try{
-        const response = await mascotasApi.post('mascotas/', mascota);
-        console.log(response.data);
-        alert("Mascota agregada con exito")
-        }catch(error){
+            const response = await mascotasApi.post('mascotas/', mascota);
+            console.log(response.data);
+            alert("Mascota agregada con exito");
+        } catch(error){
             console.log(error);
             if (error.response) {
                 if (error.response.status === 400) {
@@ -47,25 +46,24 @@ const [ cargando, setCargando] = useState(true);
             } else {
                 alert("Error: no hay conexion");
             }
-        }finally{
-        fetchMascotas();   
+        } finally {
+            fetchMascotas();   
         }
-    }
+    };
 
     useEffect(() => {
-        fetchMascotas();
-
-    }, [])
-
-
-
+        const cargar = async () => {
+            await fetchMascotas();
+        };
+        cargar();
+    }, []);
 
     return (
         <div className="container py-2">
             <h1 className="mb-4 text-center text-md-start fw-bold text-dark">Panel de Gestión de Mascotas</h1>
             <MascotasList lista={mascotasList} onAdd={addMascotas} cargando={cargando}/>
         </div>
-    )
+    );
 }
 
 export default MascotasPage;

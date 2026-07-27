@@ -4,6 +4,7 @@ import mascotasApi from "../../MascotasApi/MascotasApi";
 function ComMascotas({ mascotaId }) {
     const [comentarios, setComentarios] = useState([]);
 
+    useEffect(() => {
     const traerComentarios = async () => {
         try {
             const response = await mascotasApi.get("comentarios/");
@@ -26,7 +27,7 @@ function ComMascotas({ mascotaId }) {
             }
         }
     };
-    useEffect(() => {
+
         traerComentarios();
     }, [mascotaId]);
     let ConComentarios;

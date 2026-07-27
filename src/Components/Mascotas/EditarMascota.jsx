@@ -8,6 +8,7 @@ function EditarMascota({ mascota, onUpdate, onCancelar }) {
     const [selectedEstados, setEstado] = useState(mascota.estado);
     
     const [imagen, setImagen] = useState(null);
+    useEffect(() => {
     const fetchEstados = async () => {
         try {
             const response = await mascotasApi.get("choices/");
@@ -28,7 +29,7 @@ function EditarMascota({ mascota, onUpdate, onCancelar }) {
         }
     };
 
-    useEffect(() => {
+    
         fetchEstados();
     }, []);
 

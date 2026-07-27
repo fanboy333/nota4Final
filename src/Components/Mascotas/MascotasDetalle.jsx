@@ -8,7 +8,7 @@ function MascotasDetalle() {
     const { id } = useParams();
     const [detalles, setDetalles] = useState(null);
     const [editando, setEditando] = useState(false);
-
+useEffect(() => {
     const traerDetalles = async () => {
         try {
             const response = await mascotasApi.get(`mascotas/${id}/`);
@@ -30,7 +30,7 @@ function MascotasDetalle() {
         }
     };
 
-    useEffect(() => {
+    
         if (id) {
             traerDetalles();
         }
@@ -42,7 +42,7 @@ function MascotasDetalle() {
             console.log(response.data);
             alert("Mascota editada con exito");
             setEditando(false);
-            traerDetalles();
+            setDetalles(response.data);
         } catch (error) {
             console.log(error);
             if (error.response) {

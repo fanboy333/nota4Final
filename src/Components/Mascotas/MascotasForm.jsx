@@ -6,7 +6,7 @@ function MascotasForm({onAdd}){
     const [tipoAnimal, setAnimal] = useState([]);
     const [tiposexo, setTipoSexo] = useState([]);
     const [tamano, setTamano]= useState([]);
-    const [error, setError] = useState("");
+
 
 
     const [nombre, setNombre] = useState("");
@@ -20,7 +20,7 @@ function MascotasForm({onAdd}){
     const [selectedTamano, setTamanoSeleccionado] = useState ("")
     
     const [imagen, setImagen] = useState(null);
-
+ useEffect(()=>{
     const fetchEstados = async () =>{
         try{
         const response = await mascotasApi.get("choices/")
@@ -43,7 +43,7 @@ function MascotasForm({onAdd}){
             }
         }
     }
-    useEffect(()=>{
+   
         fetchEstados();
     },[])
 
