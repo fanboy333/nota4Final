@@ -59,54 +59,98 @@ function MascotasDetalle() {
     };
 
     if (!detalles) {
-        return <p>Cargando detalles...</p>;
+        return (
+            <div className="text-center my-5">
+                <div className="spinner-border text-primary" role="status">
+                    <span className="visually-hidden">Cargando...</span>
+                </div>
+                <p className="mt-2 text-muted">Cargando detalles...</p>
+            </div>
+        );
     }
 
     return (
-        <>
-            <h2>Detalles de mascota</h2>
+        <div className="container py-2">
+            <h2 className="mb-4 text-dark fw-bold">Detalles de Mascota</h2>
             {editando ? (
-                <EditarMascota 
-                    mascota={detalles} 
-                    onUpdate={actualizarMascota}
-                    onCancelar={() => setEditando(false)} 
-                />
+                <div className="card shadow-sm border-0 p-4 mb-4">
+                    <EditarMascota 
+                        mascota={detalles} 
+                        onUpdate={actualizarMascota}
+                        onCancelar={() => setEditando(false)} 
+                    />
+                </div>
             ) : (
-                <article>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Imagen</th>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                                <th>Tipo de Animal</th>
-                                <th>Raza</th>
-                                <th>Edad</th>
-                                <th>Sexo</th>
-                                <th>Tamaño</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{detalles.nombre}</td>
-                                <td><img src={detalles.imagen} style={{width: "200px"}}/></td>
-                                <td>{detalles.descripcion}</td>
-                                <td>{detalles.estado}</td>
-                                <td>{detalles.tipo_animal}</td>
-                                <td>{detalles.raza}</td>
-                                <td>{detalles.edad} años</td>
-                                <td>{detalles.sexo}</td>
-                                <td>{detalles.tamano}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button onClick={() => setEditando(true)} >Editar Mascota</button>
-                </article>
+                <div className="card shadow-sm border-0 overflow-hidden mb-4">
+                    <div className="row g-0">
+                        <div className="col-md-5">
+                            <img 
+                                src={detalles.imagen} 
+                                className="img-fluid w-100 h-100" 
+                                alt={detalles.nombre}
+                                style={{ minHeight: "250px", maxHeight: "400px", objectFit: "cover" }}
+                            />
+                        </div>
+                        <div className="col-md-7">
+                            <div className="card-body p-4 d-flex flex-column h-100">
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                    <h2 className="card-title text-primary fw-bold mb-0">{detalles.nombre}</h2>
+                                    <span className="badge bg-success px-3 py-2 text-capitalize fs-6">{detalles.estado}</span>
+                                </div>
+                                
+                                <p className="card-text text-muted mb-4">{detalles.descripcion}</p>
+
+                                <div className="row g-2 mb-4">
+                                    <div className="col-6 col-sm-4">
+                                        <div className="bg-light p-2 rounded text-center border">
+                                            <span className="text-secondary small d-block">Tipo</span>
+                                            <strong className="text-dark">{detalles.tipo_animal}</strong>
+                                        </div>
+                                    </div>
+                                    <div className="col-6 col-sm-4">
+                                        <div className="bg-light p-2 rounded text-center border">
+                                            <span className="text-secondary small d-block">Raza</span>
+                                            <strong className="text-dark">{detalles.raza || "N/A"}</strong>
+                                        </div>
+                                    </div>
+                                    <div className="col-6 col-sm-4">
+                                        <div className="bg-light p-2 rounded text-center border">
+                                            <span className="text-secondary small d-block">Edad</span>
+                                            <strong className="text-dark">{detalles.edad} años</strong>
+                                        </div>
+                                    </div>
+                                    <div className="col-6 col-sm-4">
+                                        <div className="bg-light p-2 rounded text-center border">
+                                            <span className="text-secondary small d-block">Sexo</span>
+                                            <strong className="text-dark text-capitalize">{detalles.sexo}</strong>
+                                        </div>
+                                    </div>
+                                    <div className="col-6 col-sm-4">
+                                        <div className="bg-light p-2 rounded text-center border">
+                                            <span className="text-secondary small d-block">Tamaño</span>
+                                            <strong className="text-dark text-capitalize">{detalles.tamano}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-auto">
+                                    <button 
+                                        onClick={() => setEditando(true)} 
+                                        className="btn btn-warning fw-bold px-4 text-dark"
+                                    >
+                                         Editar Mascota
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             )}
 
-            <ComMascotas mascotaId={id} />
-        </>
+            <div className="card shadow-sm border-0 p-4 mb-4">
+                <ComMascotas mascotaId={id} />
+            </div>
+        </div>
     );
 }
 

@@ -60,11 +60,11 @@ const [ cargando, setCargando] = useState(true);
 
 
 
-    return(
-        <>
-        <h1>Pagina de Mascotas</h1>
-        <MascotasList lista={mascotasList} onAdd={addMascotas} cargando={cargando}/>
-        </>
+    return (
+        <div className="container py-2">
+            <h1 className="mb-4 text-center text-md-start fw-bold text-dark">Panel de Gestión de Mascotas</h1>
+            <MascotasList lista={mascotasList} onAdd={addMascotas} cargando={cargando}/>
+        </div>
     )
 }
 
