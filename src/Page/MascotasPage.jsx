@@ -5,8 +5,10 @@ function MascotasPage(){
 
 
 const  [mascotasList, setMascotasList] = useState([]);
+const [ cargando, setCargando] = useState(true);
 
     const fetchMascotas = async () => {
+        setCargando(true);
         try{
         const response = await mascotasApi.get('mascotas/')
         console.log(response.data);
@@ -22,7 +24,9 @@ const  [mascotasList, setMascotasList] = useState([]);
                 }
             } else {
                 alert("Error: no hay conexion");
-            }
+            } 
+            } finally {
+                setCargando(false);
         }
         
     }
@@ -59,7 +63,7 @@ const  [mascotasList, setMascotasList] = useState([]);
     return(
         <>
         <h1>Pagina de Mascotas</h1>
-        <MascotasList lista={mascotasList} onAdd={addMascotas}/>
+        <MascotasList lista={mascotasList} onAdd={addMascotas} cargando={cargando}/>
         </>
     )
 }
