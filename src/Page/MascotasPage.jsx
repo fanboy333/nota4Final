@@ -23,7 +23,6 @@ const  [mascotasList, setMascotasList] = useState([]);
         alert("Mascota agregada con exito")
         }catch(error){
             console.log(error)
-            alert("hubo un error al agregar la mascoata")
         }finally{
         fetchMascotas();   
         }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import mascotasApi from "../../MascotasApi/MascotasApi"
+import mascotasApi from "../../MascotasApi/MascotasApi";
 
 function MascotasForm({onAdd}){
     const [estados, setEstados] = useState([]);
@@ -31,7 +31,6 @@ function MascotasForm({onAdd}){
         setTamano(response.data.tamano);
         }catch(error){
             console.log(error)
-
         }
     }
     useEffect(()=>{

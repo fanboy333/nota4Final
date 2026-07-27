@@ -7,32 +7,33 @@ function ComMascotas({ mascotaId }) {
     const traerComentarios = async () => {
         try {
             const response = await mascotasApi.get("comentarios/");
-            const todosLosComentarios = response.data.value;
-            const filtrados = todosLosComentarios.filter(c => c.mascota === Number(mascotaId));
+            console.log(response.data);
             
+            const todosLosComentarios = response.data;
+            const filtrados = todosLosComentarios.filter(c => c.mascota === parseInt(mascotaId));
             setComentarios(filtrados);
         } catch (error) {
-            console.log(error);
+            console.log("error al traer comentarios:", error);
         }
     };
     useEffect(() => {
         traerComentarios();
     }, [mascotaId]);
+    let ConComentarios;
+    if (comentarios.length === 0){
+        ConComentarios = <p>No hay comentarios</p>
+    } else {
+        ConComentarios = (
+            <ul>{comentarios.map((c) =>(
+                <li key={c.id}> <strong>{c.autor}:</strong>{c.contenido}</li> 
+            ))}</ul>
+        )
+    }
 
     return (
         <div>
             <h2>Comentarios de la Mascota</h2>
-            {comentarios.length === 0 ? (
-                <p>No hay comentarios</p>
-            ) : (
-                <ul>
-                    {comentarios.map((c) => (
-                        <li key={c.id}>
-                            <strong>{c.autor}:</strong> {c.contenido}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            {ConComentarios}
         </div>
     );
 }
